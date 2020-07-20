@@ -1,0 +1,112 @@
+# include <iostream>
+# include <stdio.h>
+using namespace std;
+
+// Steps of the program:
+// Input Matrix A
+// Input Matrix B
+// Display Matrices
+// Pad the product array
+// Apply the product
+// Display C
+
+int main()
+{
+	// defining variables and arrays
+	float A[10][10], B[10][10], product[10][10], transA[10][10];
+	int Arows, Acols, Brows, Bcols;
+	int i, j, k, test;
+	float sum = 0;
+
+	// Input Rows and Columns of Matrix A
+	cout << "Enter number of rows for matrix A and press enter: ";
+	cin >> Arows;
+	cout << "Enter number of columns for matrix A and press enter: ";
+	cin >> Acols;
+	// Input Rows and Columns of Matrix B
+	cout << "Enter number of rows for matrix B and press enter: ";
+	cin >> Brows;
+	cout << "Enter number of columns for matrix B and press enter: ";
+	cin >> Bcols;
+
+	// Inputting elements into Matrix A
+	cout << endl << "Enter elements of matrix A :" << endl;
+	for (i = 0; i < Arows; i++)		// Traversing through rows of A
+	{
+		for (j = 0; j < Acols; j++)		// Traversing through columns of A
+		{
+			cout << "Enter element a " << i + 1 << j + 1 << " : "; // Displaying individual element's index
+			cin >> A[i][j];		// input element values 
+		}
+	}
+
+	// Inputting elements into Matrix B
+	cout << endl << "Enter elements of matrix B:" << endl;
+	for (i = 0; i < Brows; i++)		// Traversing through rows of B
+	{ 
+		for (j = 0; j < Bcols; j++)		// Traversing through columns of B
+		{
+			cout << "Enter element b" << i + 1 << j + 1 << " : ";   // Displaying individual element's index
+			cin >> B[i][j];		// input element values
+		}
+	}
+
+	// Displaying Matrix A to act as a sanity check
+	cout <<endl<< "Entered Matrix A is:" << endl;
+	for (i = 0; i < Arows; i++)		// Traversing through rows of A
+	{
+		for (j = 0; j < Acols; j++)		// Traversing through columns of A
+		{
+			cout << A[i][j] << " ";		// output element values
+		}
+		cout << endl << endl;
+	}
+
+	// Displaying Matrix B
+	cout << "Entered Matrix B is:" << endl;
+	for (i = 0; i < Brows; i++)
+	{
+		for (j = 0; j < Bcols; j++)		// Traversing through rows of A
+		{
+			cout << B[i][j] << " ";		// Traversing through columns of A
+		}
+		cout << endl<< endl;		// output element values
+	}
+
+	// Intializing and padding the product matrix to 0 with size of Arows x Bcols
+	for (i = 0; i < Arows; i++)		// Traversing through rows of A
+	{
+		for (j = 0; j < Bcols; j++)		// Traversing through columns of B
+		{
+			product[i][j] = 0;		// initialising to 0
+		}
+	}
+
+	// Multiplying matrix A and B and storing in the product array.
+	for (i = 0; i < Arows; i++) 
+	{
+		for (j = 0; j < Bcols; j++)
+			for (k = 0; k < Brows; k++)		// Can also take Acols = Brows, allows to simulateanously traverse A and B
+			{
+				// Accessing elements from A and B matrices and multiplying them 
+				product[i][j] += A[i][k] * B[k][j];		// i = row number of A, j = column number of B
+			}
+	}
+
+	// Displaying the multiplication of two matrices A and B.
+	cout << endl << "Matrix C= " << endl;
+	for (i = 0; i < Arows; i++)			// traversing the size of the array
+	{
+		for (j = 0; j < Bcols; j++)
+		{
+			cout << " " << product[i][j];		// outputting the product array elements
+			if (j == Bcols - 1)		// conditions to stop
+				cout << endl;
+		}
+	}
+
+	cout << endl << "Program complete, press Enter to stop";
+	cin >> test;
+
+	return 0;
+}
